@@ -3,13 +3,13 @@ kind: Kustomization
 
 resources:
 - ../../base
-- configmap.yaml
+- deploy-test.yaml
 
 patches:
 - target:
-    kind: Service
-    name: kargo-demo
+    kind: MarklogicCluster
+    name: ml
   patch: |-
-    - op: replace
-      path: /spec/ports/0/nodePort
-      value: 30081
+    - op: add
+      path: /spec/markLogicGroups/0/replica
+      value: 4
